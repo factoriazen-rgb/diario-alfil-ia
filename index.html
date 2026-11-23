@@ -27,6 +27,10 @@
       --accent-soft: #e7f0f8;
       --warm: #b45309;
       --warm-soft: #fef3e6;
+      --hl-bg: #fde047;
+      --hl-soft: #fefce8;
+      --hl-border: #eab308;
+      --hl-ink: #111827;
       --ok: #156038;
       --shadow: 0 10px 30px -14px rgba(15, 23, 34, 0.14);
       --display: "Merriweather", Georgia, serif;
@@ -48,6 +52,10 @@
       --accent-soft: #192d44;
       --warm: #f6a95e;
       --warm-soft: #2c2015;
+      --hl-bg: rgba(250, 204, 21, 0.32);
+      --hl-soft: rgba(250, 204, 21, 0.08);
+      --hl-border: #facc15;
+      --hl-ink: #fef08a;
       --ok: #7ce6a8;
       --shadow: 0 14px 36px -14px rgba(0, 0, 0, 0.65);
       color-scheme: dark;
@@ -477,6 +485,44 @@
       color: var(--ok);
     }
 
+    /* Resaltado animado en amarillo para Beneficios para Diario Alfil */
+    .section-row.alfil-benefit {
+      margin-top: 4px;
+      padding: 14px 16px;
+      border-top: 0;
+      border-left: 4px solid var(--hl-border);
+      background: var(--hl-soft);
+      border-radius: 0 12px 12px 0;
+    }
+
+    .alfil-mark {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 5px;
+      color: var(--hl-ink);
+      font-weight: 800;
+      background-image: linear-gradient(var(--hl-bg), var(--hl-bg));
+      background-repeat: no-repeat;
+      background-position: 0 100%;
+      background-size: 0% 100%;
+    }
+
+    .acc-item.open .alfil-mark {
+      animation: markerSweep 0.75s 0.16s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes markerSweep {
+      0% { background-size: 0% 100%; }
+      100% { background-size: 100% 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .acc-item.open .alfil-mark {
+        animation: none;
+        background-size: 100% 100%;
+      }
+    }
+
     .section-row ul {
       margin: 0;
       padding-left: 1.15em;
@@ -617,8 +663,8 @@
           </button>
           <div class="acc-body">
             <p class="acc-desc">Bloque de tecnología dentro de un programa vigente de <strong>Diario Alfil</strong>, con Daniel Zen como entrevistado o consultado.</p>
-            <div class="section-row">
-              <div class="row-label">Beneficios para Diario Alfil</div>
+            <div class="section-row alfil-benefit">
+              <div class="row-label"><span class="alfil-mark">Beneficios para Diario Alfil</span></div>
               <ul>
                 <li><strong>Costo cero</strong> de producción.</li>
                 <li>Nuevos anunciantes del rubro tech.</li>
@@ -645,8 +691,8 @@
           </button>
           <div class="acc-body" hidden>
             <p class="acc-desc">Noticias + entrevistas a <strong>empresas y startups que buscan visibilidad para levantar capital, inversores o capital ángel</strong>. Daniel Zen como co-conductor y apoyo en producción; <strong>Diario Alfil</strong> aporta <strong>conductor principal</strong>.</p>
-            <div class="section-row">
-              <div class="row-label">Beneficios para Diario Alfil</div>
+            <div class="section-row alfil-benefit">
+              <div class="row-label"><span class="alfil-mark">Beneficios para Diario Alfil</span></div>
               <ul>
                 <li>Contenido diferencial del ecosistema tech.</li>
                 <li>Vínculos más cercanos con prospectos de auspiciantes en innovación (público y privado).</li>
@@ -678,8 +724,8 @@
                 <li>Webinars de aprendizaje con IA enfocados a empresas.</li>
               </ul>
             </div>
-            <div class="section-row">
-              <div class="row-label">Beneficios para Diario Alfil</div>
+            <div class="section-row alfil-benefit">
+              <div class="row-label"><span class="alfil-mark">Beneficios para Diario Alfil</span></div>
               <ul>
                 <li><strong>Retorno económico</strong> directo del evento.</li>
                 <li>Posicionamiento para facilitar la venta de pauta.</li>
@@ -706,8 +752,8 @@
           </button>
           <div class="acc-body" hidden>
             <p class="acc-desc">Unidad bajo <strong>Diario Alfil</strong> de capacitación <em>in company</em>, soluciones <em>low cost</em> y diagnóstico de IA, comercializada por el diario.</p>
-            <div class="section-row">
-              <div class="row-label">Beneficios para Diario Alfil</div>
+            <div class="section-row alfil-benefit">
+              <div class="row-label"><span class="alfil-mark">Beneficios para Diario Alfil</span></div>
               <ul>
                 <li>Nuevos ingresos con la estructura comercial existente, <strong>costo cero</strong> y sin desarrollo técnico para Alfil.</li>
                 <li>Esquema por porcentaje pre-acordado (ej. <strong>60 % / 40 %</strong>).</li>
