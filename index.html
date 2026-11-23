@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="es" data-theme="light" data-size="normal">
+<html lang="es" data-theme="light" data-large="false">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Diario Alfil · Tecnología e IA</title>
-  <meta name="description" content="Documentos de la reunión: escenarios posibles para sumar contenidos de tecnología e IA y casos de uso operativos por área en Diario Alfil.">
+  <meta name="description" content="Posibilidades nicho de Tecnología e IA e ideas prácticas de ejemplo para la operación de Diario Alfil.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Tecnología e inteligencia artificial en Diario Alfil">
-  <meta property="og:description" content="Informe ejecutivo interactivo con cuatro escenarios progresivos y casos de uso de IA por área. Incluye descarga de PDFs.">
+  <meta property="og:description" content="Posibilidades nicho de Tecnología e IA e ideas prácticas de ejemplo para la operación de Diario Alfil.">
   <meta property="og:image" content="https://factoriazen-rgb.github.io/diario-alfil-ia/informe.jpg">
   <meta property="og:url" content="https://factoriazen-rgb.github.io/diario-alfil-ia/">
   <meta name="twitter:card" content="summary_large_image">
@@ -18,55 +18,47 @@
     :root {
       --bg: #f6f7f9;
       --surface: #ffffff;
-      --surface-soft: #f0f4f8;
+      --soft: #eff4f9;
       --fg: #0f1722;
-      --fg-2: #263140;
-      --muted: #4b5563;
-      --line: #d1d5db;
-      --line-strong: #9ca3af;
-      --navy: #162436;
-      --accent: #1d4f7a;
-      --accent-soft: #e8f1f8;
+      --fg-2: #2c3849;
+      --muted: #526072;
+      --line: #dce2ea;
+      --accent: #1b4d7a;
+      --accent-soft: #e7f0f8;
       --warm: #b45309;
-      --warm-soft: #fef3e7;
-      --ok: #14532d;
-      --ok-soft: #ecfdf3;
-      --shadow: 0 8px 28px -12px rgba(15, 23, 34, 0.14);
-      --display: "Merriweather", Georgia, "Times New Roman", serif;
+      --warm-soft: #fef3e6;
+      --ok: #156038;
+      --shadow: 0 10px 30px -14px rgba(15, 23, 34, 0.14);
+      --display: "Merriweather", Georgia, serif;
       --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-      --base-size: 18px;
-      --radius: 12px;
+      --base: 18px;
+      --r: 16px;
       color-scheme: light;
     }
 
     :root[data-theme="dark"] {
       --bg: #0b111b;
-      --surface: #131c2b;
-      --surface-soft: #1a2638;
-      --fg: #f3f6fa;
-      --fg-2: #d6dde8;
-      --muted: #a6b2c4;
-      --line: #28364a;
-      --line-strong: #3d516b;
-      --navy: #e5eef8;
-      --accent: #7cb6e8;
-      --accent-soft: #1a2d42;
-      --warm: #f5a65b;
+      --surface: #131d2d;
+      --soft: #1a283d;
+      --fg: #f4f7fb;
+      --fg-2: #d3dce8;
+      --muted: #9aa8bc;
+      --line: #253449;
+      --accent: #7db8eb;
+      --accent-soft: #192d44;
+      --warm: #f6a95e;
       --warm-soft: #2c2015;
-      --ok: #86efac;
-      --ok-soft: #12281e;
+      --ok: #7ce6a8;
       --shadow: 0 14px 36px -14px rgba(0, 0, 0, 0.65);
       color-scheme: dark;
     }
 
-    :root[data-size="large"] { --base-size: 20px; }
-    :root[data-size="xlarge"] { --base-size: 22px; }
+    :root[data-large="true"] { --base: 21px; }
 
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
     html {
-      font-size: var(--base-size);
-      scroll-behavior: smooth;
+      font-size: var(--base);
       -webkit-text-size-adjust: 100%;
     }
 
@@ -75,587 +67,482 @@
       background: var(--bg);
       color: var(--fg);
       font-family: var(--body);
-      line-height: 1.6;
+      line-height: 1.58;
       -webkit-font-smoothing: antialiased;
-      padding-bottom: max(32px, env(safe-area-inset-bottom, 0px));
+      padding-bottom: max(36px, env(safe-area-inset-bottom, 0px));
     }
 
-    /* Barra superior de accesibilidad */
+    [hidden] { display: none !important; }
+
+    /* Barra superior ultra limpia */
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 40;
+      z-index: 50;
       background: var(--surface);
       border-bottom: 1px solid var(--line);
-      padding: 10px max(16px, env(safe-area-inset-left, 0px));
+      padding: 10px 16px;
     }
 
     .topbar-inner {
-      max-width: 960px;
+      max-width: 720px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .brand {
-      font-size: 0.78rem;
-      font-weight: 700;
+      appearance: none;
+      border: 0;
+      background: transparent;
+      padding: 6px 0;
+      cursor: pointer;
+      font-family: var(--body);
+      font-size: 0.84rem;
+      font-weight: 800;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--accent);
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 8px;
     }
 
     .brand::before {
       content: "";
-      width: 22px;
-      height: 2px;
+      width: 18px;
+      height: 2.5px;
       background: var(--accent);
-      display: inline-block;
+      border-radius: 2px;
     }
 
-    .controls {
+    .tools {
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
-    .ctrl-group {
-      display: inline-flex;
-      align-items: center;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      overflow: hidden;
-      background: var(--bg);
-    }
-
-    .ctrl-btn {
+    .icon-btn {
       appearance: none;
-      border: 0;
-      background: transparent;
+      border: 1.5px solid var(--line);
+      background: var(--bg);
       color: var(--fg);
       font-family: var(--body);
-      font-size: 0.82rem;
-      font-weight: 600;
+      font-size: 0.84rem;
+      font-weight: 700;
       min-height: 40px;
-      padding: 0 12px;
+      padding: 0 13px;
+      border-radius: 999px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      transition: background 0.15s, color 0.15s;
+      gap: 5px;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
     }
 
-    .ctrl-btn:hover { background: var(--accent-soft); color: var(--accent); }
-    .ctrl-btn[aria-pressed="true"] {
+    .icon-btn[aria-pressed="true"] {
       background: var(--accent);
+      border-color: var(--accent);
       color: #ffffff;
     }
-    :root[data-theme="dark"] .ctrl-btn[aria-pressed="true"] {
-      color: #0b111b;
-    }
+    :root[data-theme="dark"] .icon-btn[aria-pressed="true"] { color: #0b111b; }
 
-    .ctrl-single {
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: var(--bg);
-    }
-
-    /* Contenedor principal */
+    /* Contenedor mobile-first */
     .wrap {
-      max-width: 960px;
+      max-width: 720px;
       margin: 0 auto;
-      padding: clamp(24px, 4vw, 44px) 16px 40px;
+      padding: 24px 16px 32px;
     }
 
-    /* Portada compacta */
+    .fade-in {
+      animation: fadeUp 0.28s ease-out both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    /* ================= INICIO ================= */
     .hero {
-      margin-bottom: 24px;
+      margin-bottom: 26px;
     }
 
     h1 {
       font-family: var(--display);
       font-weight: 700;
-      font-size: clamp(1.75rem, 4.8vw, 2.65rem);
-      line-height: 1.2;
+      font-size: clamp(1.65rem, 6vw, 2.35rem);
+      line-height: 1.24;
       letter-spacing: -0.015em;
-      margin: 0 0 14px;
+      margin: 0 0 12px;
       color: var(--fg);
     }
 
-    h1 em {
-      font-style: normal;
-      color: var(--accent);
-    }
-
-    .subtitle {
-      margin: 0 0 14px;
-      color: var(--fg-2);
-      max-width: 62ch;
-      font-size: 1rem;
-      font-weight: 500;
-    }
+    h1 span { color: var(--accent); }
 
     .byline {
       font-size: 0.92rem;
       color: var(--muted);
+      margin: 0;
     }
     .byline strong {
       color: var(--fg);
       font-weight: 800;
     }
-    .byline .author-sub {
-      font-weight: 400;
-      color: var(--muted);
-    }
 
-    /* Pestañas principales de los 2 documentos */
-    .doc-tabs {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin: 24px 0 22px;
-    }
-
-    .doc-tab {
-      appearance: none;
-      text-align: left;
-      background: var(--surface);
-      border: 2px solid var(--line);
-      border-radius: var(--radius);
-      padding: 14px 16px;
-      cursor: pointer;
-      color: var(--fg);
-      font-family: var(--body);
-      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      min-height: 76px;
-    }
-
-    .doc-tab:hover {
-      border-color: var(--accent);
-    }
-
-    .doc-tab[aria-selected="true"] {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-      box-shadow: var(--shadow);
-    }
-
-    .doc-tab-kicker {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .doc-tab-title {
-      font-size: 1rem;
-      font-weight: 700;
-      line-height: 1.25;
-      color: var(--fg);
-    }
-
-    .doc-tab-sub {
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
-
-    /* Panel de documento */
-    .panel[hidden] { display: none; }
-
-    .panel-head {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 20px;
-      margin-bottom: 16px;
-      box-shadow: var(--shadow);
-    }
-
-    .panel-kicker {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--warm);
-      margin-bottom: 6px;
-    }
-
-    .panel-head h2 {
-      font-family: var(--display);
-      font-weight: 700;
-      font-size: clamp(1.3rem, 3.2vw, 1.7rem);
-      line-height: 1.28;
-      margin: 0 0 10px;
-      color: var(--fg);
-    }
-
-    .panel-head p {
-      margin: 0;
-      color: var(--fg-2);
-      font-size: 0.98rem;
-    }
-
-    /* Selector interactivo de ítems (1, 2, 3, 4, Ver todos) */
-    .item-nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 18px 0 16px;
-    }
-
-    .pill {
-      appearance: none;
-      border: 1.5px solid var(--line-strong);
-      background: var(--surface);
-      color: var(--fg);
-      font-family: var(--body);
-      font-size: 0.88rem;
-      font-weight: 600;
-      padding: 10px 14px;
-      min-height: 46px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background 0.15s, border-color 0.15s, color 0.15s;
-      flex: 1 1 auto;
-      text-align: center;
-    }
-
-    .pill:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .pill[aria-pressed="true"] {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #ffffff;
-    }
-
-    :root[data-theme="dark"] .pill[aria-pressed="true"] {
-      color: #0b111b;
-    }
-
-    /* Tarjetas de contenido */
-    .cards {
+    .home-cards {
       display: flex;
       flex-direction: column;
       gap: 16px;
     }
 
-    .card {
+    .doc-card {
+      width: 100%;
+      text-align: left;
+      appearance: none;
       background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: clamp(18px, 3vw, 28px);
+      border: 1.5px solid var(--line);
+      border-radius: var(--r);
+      padding: 22px 20px;
       box-shadow: var(--shadow);
-    }
-
-    .card[hidden] { display: none; }
-
-    .card-top {
+      cursor: pointer;
+      color: var(--fg);
+      font-family: var(--body);
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 10px;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
     }
 
-    .badge {
-      display: inline-block;
-      font-size: 0.76rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
+    .doc-card:hover,
+    .doc-card:active {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .doc-tag {
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      padding: 5px 10px;
-      border-radius: 6px;
-      background: var(--warm-soft);
       color: var(--warm);
     }
 
-    .step-counter {
+    .doc-card h2 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(1.2rem, 4.4vw, 1.45rem);
+      line-height: 1.3;
+      margin: 0;
+      color: var(--fg);
+    }
+
+    .doc-card p {
+      margin: 0;
+      font-size: 0.94rem;
+      color: var(--fg-2);
+    }
+
+    .doc-cta {
+      margin-top: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .home-pdfs {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .home-pdfs-label {
       font-size: 0.8rem;
-      font-weight: 600;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       color: var(--muted);
     }
 
-    .card h3 {
-      font-family: var(--display);
-      font-weight: 700;
-      font-size: clamp(1.22rem, 2.8vw, 1.55rem);
-      line-height: 1.28;
-      margin: 0 0 14px;
-      color: var(--fg);
+    .pdf-links-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
-    .desc-block {
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--fg);
-      margin: 0 0 18px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .desc-list {
-      margin: 0;
-      padding-left: 1.25em;
-    }
-    .desc-list li + li { margin-top: 8px; }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .info-box {
-      background: var(--surface-soft);
+    .pdf-chip {
+      text-decoration: none;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--surface);
       border: 1px solid var(--line);
       border-radius: 10px;
-      padding: 16px;
+      padding: 10px 14px;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex: 1 1 220px;
+      justify-content: center;
+    }
+    .pdf-chip:hover { border-color: var(--accent); background: var(--accent-soft); }
+
+    /* ================= VISTA DOCUMENTO ================= */
+    .doc-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 18px;
     }
 
-    .info-box.highlight {
+    .nav-pill {
+      appearance: none;
+      text-decoration: none;
+      border: 1.5px solid var(--line);
+      background: var(--surface);
+      color: var(--fg);
+      font-family: var(--body);
+      font-size: 0.88rem;
+      font-weight: 700;
+      min-height: 44px;
+      padding: 0 15px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-pill:hover { border-color: var(--accent); color: var(--accent); }
+    .nav-pill.accent {
       background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .doc-intro {
+      margin-bottom: 20px;
+    }
+
+    .doc-intro h2 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(1.38rem, 5vw, 1.8rem);
+      line-height: 1.26;
+      margin: 6px 0 8px;
+      color: var(--fg);
+    }
+
+    .doc-intro p {
+      margin: 0;
+      font-size: 0.96rem;
+      color: var(--fg-2);
+    }
+
+    /* Acordeón limpio y táctil */
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .acc-item {
+      background: var(--surface);
+      border: 1.5px solid var(--line);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .acc-item.open {
       border-color: var(--accent);
     }
 
-    .info-box.benefit {
-      background: var(--ok-soft);
-      border-color: var(--ok);
+    .acc-trigger {
+      width: 100%;
+      appearance: none;
+      border: 0;
+      background: transparent;
+      padding: 18px 18px;
+      text-align: left;
+      cursor: pointer;
+      color: var(--fg);
+      font-family: var(--body);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
     }
 
-    .info-label {
-      font-size: 0.76rem;
+    .acc-head-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .acc-badge {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--warm);
+    }
+
+    .acc-title {
+      font-family: var(--display);
       font-weight: 700;
+      font-size: 1.08rem;
+      line-height: 1.3;
+      color: var(--fg);
+    }
+
+    .acc-chevron {
+      flex: 0 0 auto;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--soft);
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      transition: transform 0.22s ease, background 0.2s;
+    }
+
+    .acc-item.open .acc-chevron {
+      transform: rotate(180deg);
+      background: var(--accent);
+      color: #ffffff;
+    }
+    :root[data-theme="dark"] .acc-item.open .acc-chevron { color: #0b111b; }
+
+    .acc-body {
+      padding: 0 18px 20px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .acc-desc {
+      margin: 16px 0 0;
+      font-size: 0.98rem;
+      font-weight: 500;
+      color: var(--fg);
+    }
+
+    .acc-desc ul {
+      margin: 0;
+      padding-left: 1.2em;
+    }
+    .acc-desc li + li { margin-top: 8px; }
+
+    .section-row {
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-row.first {
+      padding-top: 16px;
+      border-top: 0;
+    }
+
+    .row-label {
+      font-size: 0.74rem;
+      font-weight: 800;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
-    .info-box.benefit .info-label {
+    .row-label.subtle {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .row-label.ok {
       color: var(--ok);
     }
 
-    .info-box ul {
+    .section-row ul {
       margin: 0;
       padding-left: 1.15em;
       color: var(--fg);
     }
-
-    .info-box li + li { margin-top: 8px; }
-
-    .info-box p {
+    .section-row li + li { margin-top: 6px; }
+    .section-row p {
       margin: 0;
       color: var(--fg);
     }
 
-    .three-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    /* Navegación Anterior / Siguiente */
-    .pager {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .pager[hidden] { display: none; }
-
-    .pager-btn {
-      appearance: none;
-      border: 1.5px solid var(--accent);
-      background: var(--surface);
-      color: var(--accent);
-      font-family: var(--body);
-      font-size: 0.92rem;
-      font-weight: 600;
-      padding: 12px 18px;
-      min-height: 48px;
-      border-radius: 10px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: background 0.15s, color 0.15s;
-    }
-
-    .pager-btn:hover:not(:disabled) {
-      background: var(--accent);
-      color: #ffffff;
-    }
-    :root[data-theme="dark"] .pager-btn:hover:not(:disabled) {
-      color: #0b111b;
-    }
-
-    .pager-btn:disabled {
-      opacity: 0.38;
-      cursor: not-allowed;
-      border-color: var(--line);
-      color: var(--muted);
-    }
-
-    /* Pie del documento (eje común / base técnica) */
-    .doc-note {
-      margin-top: 18px;
+    .doc-summary {
+      margin-top: 20px;
       padding: 16px 18px;
-      background: var(--surface);
+      background: var(--soft);
       border-left: 4px solid var(--accent);
-      border-top: 1px solid var(--line);
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      border-radius: 0 10px 10px 0;
+      border-radius: 0 12px 12px 0;
       font-size: 0.92rem;
       color: var(--fg-2);
       display: flex;
       flex-direction: column;
       gap: 6px;
     }
+    .doc-summary strong { color: var(--fg); }
 
-    .doc-note strong { color: var(--fg); }
-
-    /* Acciones PDF + vista previa opcional */
-    .pdf-bar {
-      margin-top: 18px;
-      padding: 18px;
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .pdf-bar-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .pdf-info {
-      font-size: 0.9rem;
-      color: var(--fg-2);
-    }
-    .pdf-info strong {
-      display: block;
-      color: var(--fg);
-      font-size: 0.95rem;
-    }
-
-    .pdf-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .btn {
+    .next-doc-btn {
+      margin-top: 22px;
+      width: 100%;
+      appearance: none;
+      border: 0;
+      background: var(--accent);
+      color: #ffffff;
+      font-family: var(--body);
+      font-size: 0.96rem;
+      font-weight: 700;
+      min-height: 54px;
+      padding: 14px 20px;
+      border-radius: 12px;
+      cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      min-height: 48px;
-      padding: 10px 18px;
-      border-radius: 10px;
-      font-family: var(--body);
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background 0.15s, color 0.15s, border-color 0.15s;
     }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #ffffff;
-      border: 1.5px solid var(--accent);
-    }
-    :root[data-theme="dark"] .btn-primary { color: #0b111b; }
-    .btn-primary:hover { filter: brightness(1.08); }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--accent);
-      border: 1.5px solid var(--accent);
-    }
-    .btn-secondary:hover {
-      background: var(--accent-soft);
-    }
-
-    details.preview-toggle {
-      border-top: 1px solid var(--line);
-      padding-top: 12px;
-    }
-
-    details.preview-toggle summary {
-      cursor: pointer;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--accent);
-      list-style: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 0;
-    }
-
-    details.preview-toggle summary::-webkit-details-marker { display: none; }
-
-    details.preview-toggle img {
-      display: block;
-      width: 100%;
-      height: auto;
-      margin-top: 12px;
-      border-radius: 6px;
-      border: 1px solid var(--line);
-    }
-
-    .switch-doc {
-      margin-top: 20px;
-      text-align: center;
-    }
+    :root[data-theme="dark"] .next-doc-btn { color: #0b111b; }
+    .next-doc-btn:hover { filter: brightness(1.08); }
 
     footer {
-      margin-top: 36px;
-      padding-top: 18px;
+      margin-top: 34px;
+      padding-top: 16px;
       border-top: 1px solid var(--line);
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
+      align-items: center;
       gap: 10px;
-      font-size: 0.82rem;
+      font-size: 0.84rem;
       color: var(--muted);
+    }
+    footer strong {
+      color: var(--fg);
+      font-weight: 800;
     }
 
     :focus-visible {
       outline: 3px solid var(--accent);
       outline-offset: 2px;
-    }
-
-    @media (max-width: 720px) {
-      .doc-tabs { grid-template-columns: 1fr; }
-      .two-col { grid-template-columns: 1fr; }
-      .pdf-actions { width: 100%; }
-      .pdf-actions .btn { flex: 1 1 160px; }
-      .pager-btn { flex: 1 1 0; justify-content: center; }
     }
   </style>
 </head>
@@ -663,78 +550,82 @@
 
   <header class="topbar">
     <div class="topbar-inner">
-      <div class="brand">Diario Alfil</div>
-      <div class="controls" aria-label="Opciones de lectura">
-        <div class="ctrl-group" role="group" aria-label="Tamaño de texto">
-          <button type="button" class="ctrl-btn" data-set-size="normal" aria-pressed="true" title="Tamaño normal">A</button>
-          <button type="button" class="ctrl-btn" data-set-size="large" aria-pressed="false" title="Texto grande">A+</button>
-          <button type="button" class="ctrl-btn" data-set-size="xlarge" aria-pressed="false" title="Texto muy grande">A++</button>
-        </div>
-        <button type="button" class="ctrl-btn ctrl-single" id="themeBtn" aria-pressed="false" title="Cambiar entre modo claro y oscuro">
-          <span id="themeLabel">Oscuro</span>
-        </button>
+      <button type="button" class="brand" id="brandHome" title="Volver al inicio">Diario Alfil</button>
+      <div class="tools">
+        <button type="button" class="icon-btn" id="sizeBtn" aria-pressed="false" title="Agrandar letra">A+</button>
+        <button type="button" class="icon-btn" id="themeBtn" aria-pressed="false" title="Cambiar a modo oscuro">Oscuro</button>
       </div>
     </div>
   </header>
 
   <main class="wrap">
-    <section class="hero">
-      <h1>Tecnología e <em>inteligencia artificial</em> en Diario Alfil</h1>
-      <p class="subtitle">Material de la reunión en formato de lectura cómoda. Tocá cada documento para recorrerlo paso a paso o descargá el PDF original.</p>
-      <div class="byline"><strong>Dirección de Diario Alfil</strong> &nbsp;·&nbsp; <span class="author-sub">Daniel Zen</span></div>
+
+    <!-- ================= PORTADA (SOLO LOS 2 DOCUMENTOS) ================= -->
+    <section id="view-home" class="fade-in">
+      <div class="hero">
+        <h1>Tecnología e <span>inteligencia artificial</span> en Diario Alfil</h1>
+        <p class="byline"><strong>Dirección de Diario Alfil</strong> &nbsp;·&nbsp; Daniel Zen</p>
+      </div>
+
+      <div class="home-cards">
+        <button type="button" class="doc-card" data-open-view="doc1">
+          <span class="doc-tag">Documento 1 · 4 escenarios</span>
+          <h2>Posibilidades nicho de Tecnología e IA — Diario Alfil</h2>
+          <p>Cuatro escenarios progresivos para sumar contenidos de tecnología e IA y abrir nuevas vías de ingresos.</p>
+          <span class="doc-cta">Abrir y leer →</span>
+        </button>
+
+        <button type="button" class="doc-card" data-open-view="doc2">
+          <span class="doc-tag">Documento 2 · 4 casos por área</span>
+          <h2>Ideas prácticas de ejemplo para la operación de Diario Alfil</h2>
+          <p>Aplicaciones puntuales sobre archivo, área comercial, suscriptores y streaming de YouTube.</p>
+          <span class="doc-cta">Abrir y leer →</span>
+        </button>
+      </div>
+
+      <div class="home-pdfs">
+        <span class="home-pdfs-label">Descargar documentos en PDF</span>
+        <div class="pdf-links-row">
+          <a class="pdf-chip" href="Informe-Tecnologia-IA-Diario-Alfil.pdf" download>↓ PDF · Posibilidades nicho</a>
+          <a class="pdf-chip" href="Ejemplos-Operativos-IA-Diario-Alfil.pdf" download>↓ PDF · Ideas prácticas</a>
+        </div>
+      </div>
     </section>
 
-    <!-- Selector principal de los 2 documentos -->
-    <div class="doc-tabs" role="tablist" aria-label="Documentos de la reunión">
-      <button type="button" class="doc-tab" role="tab" id="tab-doc1" aria-controls="panel-doc1" aria-selected="true">
-        <span class="doc-tab-kicker">Documento 1</span>
-        <span class="doc-tab-title">Informe Ejecutivo</span>
-        <span class="doc-tab-sub">4 escenarios progresivos de negocio</span>
-      </button>
-      <button type="button" class="doc-tab" role="tab" id="tab-doc2" aria-controls="panel-doc2" aria-selected="false">
-        <span class="doc-tab-kicker">Documento 2</span>
-        <span class="doc-tab-title">Ejemplos Operativos</span>
-        <span class="doc-tab-sub">4 casos de uso de IA por área</span>
-      </button>
-    </div>
+    <!-- ================= DOCUMENTO 1 (PANTALLA EXCLUSIVA) ================= -->
+    <section id="view-doc1" class="fade-in" hidden>
+      <div class="doc-nav">
+        <button type="button" class="nav-pill" data-open-view="home">← Inicio</button>
+        <a class="nav-pill accent" href="Informe-Tecnologia-IA-Diario-Alfil.pdf" download>↓ Descargar PDF</a>
+      </div>
 
-    <!-- ===================== DOCUMENTO 1 ===================== -->
-    <section class="panel" id="panel-doc1" role="tabpanel" aria-labelledby="tab-doc1">
-      <div class="panel-head">
-        <div class="panel-kicker">Informe Ejecutivo</div>
+      <div class="doc-intro">
+        <span class="doc-tag">Documento 1</span>
         <h2>Posibilidades nicho de Tecnología e IA — Diario Alfil</h2>
-        <p>Cuatro escenarios progresivos para sumar contenidos de tecnología e IA en <strong>Diario Alfil</strong> y abrir nuevas vías de ingresos.</p>
+        <p>Cuatro escenarios progresivos para sumar contenidos de tecnología e IA en <strong>Diario Alfil</strong> y abrir nuevas vías de ingresos. Tocá cada escenario para abrirlo.</p>
       </div>
 
-      <div class="item-nav" role="group" aria-label="Elegir escenario" data-nav="doc1">
-        <button type="button" class="pill" data-target="0" aria-pressed="true">1 · Bloque</button>
-        <button type="button" class="pill" data-target="1" aria-pressed="false">2 · Streaming</button>
-        <button type="button" class="pill" data-target="2" aria-pressed="false">3 · Eventos</button>
-        <button type="button" class="pill" data-target="3" aria-pressed="false">4 · Subsidiaria</button>
-        <button type="button" class="pill" data-target="all" aria-pressed="false">Ver los 4</button>
-      </div>
-
-      <div class="cards" data-cards="doc1">
-        <!-- Escenario 1 -->
-        <article class="card" data-idx="0">
-          <div class="card-top">
-            <span class="badge">Opción inicial</span>
-            <span class="step-counter">Escenario 1 de 4</span>
-          </div>
-          <h3>1. Bloque en Programa</h3>
-          <div class="desc-block">
-            Bloque de tecnología dentro de un programa vigente de <strong>Diario Alfil</strong>, con Daniel Zen como entrevistado o consultado.
-          </div>
-          <div class="two-col">
-            <div class="info-box highlight">
-              <div class="info-label"><strong>Beneficios para Diario Alfil</strong></div>
+      <div class="accordion" data-accordion="doc1">
+        <!-- Escenario 1 (abierto por defecto) -->
+        <article class="acc-item open">
+          <button type="button" class="acc-trigger" aria-expanded="true">
+            <span class="acc-head-text">
+              <span class="acc-badge">Opción inicial</span>
+              <span class="acc-title">1. Bloque en Programa</span>
+            </span>
+            <span class="acc-chevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="acc-body">
+            <p class="acc-desc">Bloque de tecnología dentro de un programa vigente de <strong>Diario Alfil</strong>, con Daniel Zen como entrevistado o consultado.</p>
+            <div class="section-row">
+              <div class="row-label">Beneficios para Diario Alfil</div>
               <ul>
                 <li><strong>Costo cero</strong> de producción.</li>
                 <li>Nuevos anunciantes del rubro tech.</li>
               </ul>
             </div>
-            <div class="info-box">
-              <div class="info-label">Beneficios para Daniel Zen</div>
+            <div class="section-row">
+              <div class="row-label subtle">Beneficios para Daniel Zen</div>
               <ul>
                 <li>Recortes para autoridad y marca personal profesional.</li>
                 <li>Visibilidad para ofrecer <strong>servicios, cursos y capacitaciones</strong>.</li>
@@ -744,25 +635,25 @@
         </article>
 
         <!-- Escenario 2 -->
-        <article class="card" data-idx="1" hidden>
-          <div class="card-top">
-            <span class="badge">Contenido dedicado</span>
-            <span class="step-counter">Escenario 2 de 4</span>
-          </div>
-          <h3>2. Streaming de Tecnología</h3>
-          <div class="desc-block">
-            Noticias + entrevistas a <strong>empresas y startups que buscan visibilidad para levantar capital, inversores o capital ángel</strong>. Daniel Zen como co-conductor y apoyo en producción; <strong>Diario Alfil</strong> aporta <strong>conductor principal</strong>.
-          </div>
-          <div class="two-col">
-            <div class="info-box highlight">
-              <div class="info-label"><strong>Beneficios para Diario Alfil</strong></div>
+        <article class="acc-item">
+          <button type="button" class="acc-trigger" aria-expanded="false">
+            <span class="acc-head-text">
+              <span class="acc-badge">Contenido dedicado</span>
+              <span class="acc-title">2. Streaming de Tecnología</span>
+            </span>
+            <span class="acc-chevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="acc-body" hidden>
+            <p class="acc-desc">Noticias + entrevistas a <strong>empresas y startups que buscan visibilidad para levantar capital, inversores o capital ángel</strong>. Daniel Zen como co-conductor y apoyo en producción; <strong>Diario Alfil</strong> aporta <strong>conductor principal</strong>.</p>
+            <div class="section-row">
+              <div class="row-label">Beneficios para Diario Alfil</div>
               <ul>
                 <li>Contenido diferencial del ecosistema tech.</li>
                 <li>Vínculos más cercanos con prospectos de auspiciantes en innovación (público y privado).</li>
               </ul>
             </div>
-            <div class="info-box">
-              <div class="info-label">Beneficios para Daniel Zen</div>
+            <div class="section-row">
+              <div class="row-label subtle">Beneficios para Daniel Zen</div>
               <ul>
                 <li>Posicionamiento como co-conductor y presentador en el sector tech.</li>
                 <li>Visibilidad para ofrecer <strong>servicios, cursos y capacitaciones</strong>.</li>
@@ -772,28 +663,30 @@
         </article>
 
         <!-- Escenario 3 -->
-        <article class="card" data-idx="2" hidden>
-          <div class="card-top">
-            <span class="badge">Escalamiento</span>
-            <span class="step-counter">Escenario 3 de 4</span>
-          </div>
-          <h3>3. Eventos y Webinars con Disertantes</h3>
-          <div class="desc-block">
-            <ul class="desc-list">
-              <li>Eventos con disertantes apalancados en la audiencia de los escenarios 1 y 2 (ej. Potencia Emprendedora: Muni, Corlab, Globant, La Voz).</li>
-              <li>Webinars de aprendizaje con IA enfocados a empresas.</li>
-            </ul>
-          </div>
-          <div class="two-col">
-            <div class="info-box highlight">
-              <div class="info-label"><strong>Beneficios para Diario Alfil</strong></div>
+        <article class="acc-item">
+          <button type="button" class="acc-trigger" aria-expanded="false">
+            <span class="acc-head-text">
+              <span class="acc-badge">Escalamiento</span>
+              <span class="acc-title">3. Eventos y Webinars con Disertantes</span>
+            </span>
+            <span class="acc-chevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="acc-body" hidden>
+            <div class="acc-desc">
+              <ul>
+                <li>Eventos con disertantes apalancados en la audiencia de los escenarios 1 y 2 (ej. Potencia Emprendedora: Muni, Corlab, Globant, La Voz).</li>
+                <li>Webinars de aprendizaje con IA enfocados a empresas.</li>
+              </ul>
+            </div>
+            <div class="section-row">
+              <div class="row-label">Beneficios para Diario Alfil</div>
               <ul>
                 <li><strong>Retorno económico</strong> directo del evento.</li>
                 <li>Posicionamiento para facilitar la venta de pauta.</li>
               </ul>
             </div>
-            <div class="info-box">
-              <div class="info-label">Beneficios para Daniel Zen</div>
+            <div class="section-row">
+              <div class="row-label subtle">Beneficios para Daniel Zen</div>
               <ul>
                 <li>Autoridad frente a empresas y decisores.</li>
                 <li>Visibilidad para ofrecer <strong>servicios, cursos y capacitaciones</strong>.</li>
@@ -803,25 +696,25 @@
         </article>
 
         <!-- Escenario 4 -->
-        <article class="card" data-idx="3" hidden>
-          <div class="card-top">
-            <span class="badge">Unidad de negocio asociada</span>
-            <span class="step-counter">Escenario 4 de 4</span>
-          </div>
-          <h3>4. Línea Subsidiaria de IA</h3>
-          <div class="desc-block">
-            Unidad bajo <strong>Diario Alfil</strong> de capacitación <em>in company</em>, soluciones <em>low cost</em> y diagnóstico de IA, comercializada por el diario.
-          </div>
-          <div class="two-col">
-            <div class="info-box highlight">
-              <div class="info-label"><strong>Beneficios para Diario Alfil</strong></div>
+        <article class="acc-item">
+          <button type="button" class="acc-trigger" aria-expanded="false">
+            <span class="acc-head-text">
+              <span class="acc-badge">Unidad de negocio asociada</span>
+              <span class="acc-title">4. Línea Subsidiaria de IA</span>
+            </span>
+            <span class="acc-chevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="acc-body" hidden>
+            <p class="acc-desc">Unidad bajo <strong>Diario Alfil</strong> de capacitación <em>in company</em>, soluciones <em>low cost</em> y diagnóstico de IA, comercializada por el diario.</p>
+            <div class="section-row">
+              <div class="row-label">Beneficios para Diario Alfil</div>
               <ul>
                 <li>Nuevos ingresos con la estructura comercial existente, <strong>costo cero</strong> y sin desarrollo técnico para Alfil.</li>
                 <li>Esquema por porcentaje pre-acordado (ej. <strong>60 % / 40 %</strong>).</li>
               </ul>
             </div>
-            <div class="info-box">
-              <div class="info-label">Beneficios para Daniel Zen</div>
+            <div class="section-row">
+              <div class="row-label subtle">Beneficios para Daniel Zen</div>
               <ul>
                 <li>Acceso a la estructura comercial del diario.</li>
                 <li>Participación por proyecto vendido (ej. <strong>40 % / 60 %</strong>).</li>
@@ -831,178 +724,135 @@
         </article>
       </div>
 
-      <div class="pager" data-pager="doc1">
-        <button type="button" class="pager-btn" data-dir="-1" disabled>← Anterior</button>
-        <button type="button" class="pager-btn" data-dir="1">Siguiente →</button>
-      </div>
-
-      <div class="doc-note">
-        <div><strong>Eje común:</strong> Transformar el alcance de Diario Alfil en posicionamiento tech y nuevos negocios.</div>
+      <div class="doc-summary">
+        <div><strong>Eje común:</strong> Transformar el alcance de <strong>Diario Alfil</strong> en posicionamiento tech y nuevos negocios.</div>
         <div><strong>Inicio sugerido:</strong> Escenario 1 (Bloque) y evolución gradual.</div>
       </div>
 
-      <div class="pdf-bar">
-        <div class="pdf-bar-row">
-          <div class="pdf-info">
-            <strong>Informe Ejecutivo en PDF</strong>
-            1 página · Formato A4 horizontal listo para imprimir o reenviar
-          </div>
-          <div class="pdf-actions">
-            <a class="btn btn-primary" href="Informe-Tecnologia-IA-Diario-Alfil.pdf" download>Descargar PDF</a>
-            <a class="btn btn-secondary" href="Informe-Tecnologia-IA-Diario-Alfil.pdf" target="_blank" rel="noopener">Abrir PDF</a>
-          </div>
-        </div>
-        <details class="preview-toggle">
-          <summary>Ver vista previa de la hoja original ▾</summary>
-          <img src="informe.jpg" width="1800" height="1272" loading="lazy" alt="Vista previa del informe ejecutivo: cuatro escenarios progresivos de tecnología e IA">
-        </details>
-      </div>
-
-      <div class="switch-doc">
-        <button type="button" class="btn btn-secondary" data-jump-tab="tab-doc2">Ir al Documento 2: Ejemplos Operativos →</button>
-      </div>
+      <button type="button" class="next-doc-btn" data-open-view="doc2">Ver Documento 2: Ideas prácticas →</button>
     </section>
 
-    <!-- ===================== DOCUMENTO 2 ===================== -->
-    <section class="panel" id="panel-doc2" role="tabpanel" aria-labelledby="tab-doc2" hidden>
-      <div class="panel-head">
-        <div class="panel-kicker">Ejemplos Operativos</div>
+    <!-- ================= DOCUMENTO 2 (PANTALLA EXCLUSIVA) ================= -->
+    <section id="view-doc2" class="fade-in" hidden>
+      <div class="doc-nav">
+        <button type="button" class="nav-pill" data-open-view="home">← Inicio</button>
+        <a class="nav-pill accent" href="Ejemplos-Operativos-IA-Diario-Alfil.pdf" download>↓ Descargar PDF</a>
+      </div>
+
+      <div class="doc-intro">
+        <span class="doc-tag">Documento 2</span>
         <h2>Ideas prácticas de ejemplo para la operación de Diario Alfil</h2>
-        <p>Aplicaciones puntuales por área sobre contenido y fuentes existentes del medio.</p>
+        <p>Aplicaciones puntuales por área sobre contenido y fuentes existentes del medio. Tocá cada caso para abrirlo.</p>
       </div>
 
-      <div class="item-nav" role="group" aria-label="Elegir caso de uso" data-nav="doc2">
-        <button type="button" class="pill" data-target="0" aria-pressed="true">1 · Redacción</button>
-        <button type="button" class="pill" data-target="1" aria-pressed="false">2 · Comercial</button>
-        <button type="button" class="pill" data-target="2" aria-pressed="false">3 · Suscriptores</button>
-        <button type="button" class="pill" data-target="3" aria-pressed="false">4 · Streaming</button>
-        <button type="button" class="pill" data-target="all" aria-pressed="false">Ver los 4</button>
-      </div>
-
-      <div class="cards" data-cards="doc2">
-        <!-- Caso 1 -->
-        <article class="card" data-idx="0">
-          <div class="card-top">
-            <span class="badge">Redacción y Streaming</span>
-            <span class="step-counter">Caso 1 de 4</span>
-          </div>
-          <h3>1. Memoria Política «Archivo Alfil»</h3>
-          <div class="three-stack">
-            <div class="info-box">
-              <div class="info-label">Problema</div>
+      <div class="accordion" data-accordion="doc2">
+        <!-- Caso 1 (abierto por defecto) -->
+        <article class="acc-item open">
+          <button type="button" class="acc-trigger" aria-expanded="true">
+            <span class="acc-head-text">
+              <span class="acc-badge">Redacción y Streaming</span>
+              <span class="acc-title">1. Memoria Política «Archivo Alfil»</span>
+            </span>
+            <span class="acc-chevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="acc-body">
+            <div class="section-row first">
+              <div class="row-label subtle">Problema</div>
               <p>Buscar declaraciones previas en 15 años de notas y vivos consume tiempo antes de entrevistas o coberturas.</p>
             </div>
-            <div class="info-box highlight">
-              <div class="info-label">Solución</div>
+            <div class="section-row">
+              <div class="row-label">Solución</div>
               <p>Buscador privado sobre el archivo web y desgrabaciones que devuelve citas textuales con fecha y enlace original.</p>
             </div>
-            <div class="info-box benefit">
-              <div class="info-label">Beneficio</div>
+            <div class="section-row">
+              <div class="row-label ok">Beneficio</div>
               <p>Datos y antecedentes verificados en segundos, actualizados con cada nota nueva.</p>
             </div>
           </div>
         </article>
 
         <!-- Caso 2 -->
-        <article class="card" data-idx="1" hidden>
-          <div class="card-top">
-            <span class="badge">Área Comercial</span>
-            <span class="step-counter">Caso 2 de 4</span>
-          </div>
-          <h3>2. Radar Comercial de Pauta</h3>
-          <div class="three-stack">
-            <div class="info-box">
-              <div class="info-label">Problema</div>
+        <article class="acc-item">
+          <button type="button" class="acc-trigger" aria-expanded="false">
+            <span class="acc-head-text">
+              <span class="acc-badge">Área Comercial</span>
+              <span class="acc-title">2. Radar Comercial de Pauta</span>
+            </span>
+            <span class="acc-chevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="acc-body" hidden>
+            <div class="section-row first">
+              <div class="row-label subtle">Problema</div>
               <p>Relevar manualmente qué empresas privadas lanzan proyectos, abren locales o ganan licitaciones en Córdoba.</p>
             </div>
-            <div class="info-box highlight">
-              <div class="info-label">Solución</div>
+            <div class="section-row">
+              <div class="row-label">Solución</div>
               <p>Lectura diaria automática de boletines, cámaras y gacetillas que envía 3 a 5 alertas filtradas por WhatsApp.</p>
             </div>
-            <div class="info-box benefit">
-              <div class="info-label">Beneficio</div>
+            <div class="section-row">
+              <div class="row-label ok">Beneficio</div>
               <p>Oportunidades diarias concretas con motivo de contacto para gestión comercial.</p>
             </div>
           </div>
         </article>
 
         <!-- Caso 3 -->
-        <article class="card" data-idx="2" hidden>
-          <div class="card-top">
-            <span class="badge">Lectores y Suscriptores</span>
-            <span class="step-counter">Caso 3 de 4</span>
-          </div>
-          <h3>3. Briefing Matutino (90 seg.)</h3>
-          <div class="three-stack">
-            <div class="info-box">
-              <div class="info-label">Problema</div>
+        <article class="acc-item">
+          <button type="button" class="acc-trigger" aria-expanded="false">
+            <span class="acc-head-text">
+              <span class="acc-badge">Lectores y Suscriptores</span>
+              <span class="acc-title">3. Briefing Matutino (90 seg.)</span>
+            </span>
+            <span class="acc-chevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="acc-body" hidden>
+            <div class="section-row first">
+              <div class="row-label subtle">Problema</div>
               <p>Los suscriptores disponen de poco tiempo para recorrer todas las publicaciones diarias del portal.</p>
             </div>
-            <div class="info-box highlight">
-              <div class="info-label">Solución</div>
+            <div class="section-row">
+              <div class="row-label">Solución</div>
               <p>Resumen automático matutino de ~220 palabras (texto o audio) con las 8–10 notas clave de las últimas 24 hs.</p>
             </div>
-            <div class="info-box benefit">
-              <div class="info-label">Beneficio</div>
+            <div class="section-row">
+              <div class="row-label ok">Beneficio</div>
               <p>Mayor uso diario de la suscripción paga reutilizando notas ya redactadas.</p>
             </div>
           </div>
         </article>
 
         <!-- Caso 4 -->
-        <article class="card" data-idx="3" hidden>
-          <div class="card-top">
-            <span class="badge">Streaming (YouTube)</span>
-            <span class="step-counter">Caso 4 de 4</span>
-          </div>
-          <h3>4. Selección de Clips de Vivos</h3>
-          <div class="three-stack">
-            <div class="info-box">
-              <div class="info-label">Problema</div>
+        <article class="acc-item">
+          <button type="button" class="acc-trigger" aria-expanded="false">
+            <span class="acc-head-text">
+              <span class="acc-badge">Streaming (YouTube)</span>
+              <span class="acc-title">4. Selección de Clips de Vivos</span>
+            </span>
+            <span class="acc-chevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="acc-body" hidden>
+            <div class="section-row first">
+              <div class="row-label subtle">Problema</div>
               <p>Revisar programas de 1 hora para extraer recortes verticales de invitados demanda horas de edición.</p>
             </div>
-            <div class="info-box highlight">
-              <div class="info-label">Solución</div>
+            <div class="section-row">
+              <div class="row-label">Solución</div>
               <p>Lectura de la transcripción de YouTube para detectar los 3 mejores fragmentos con minuto exacto de corte.</p>
             </div>
-            <div class="info-box benefit">
-              <div class="info-label">Beneficio</div>
+            <div class="section-row">
+              <div class="row-label ok">Beneficio</div>
               <p>Recortes rápidos para que los invitados difundan en redes y traccionen audiencia.</p>
             </div>
           </div>
         </article>
       </div>
 
-      <div class="pager" data-pager="doc2">
-        <button type="button" class="pager-btn" data-dir="-1" disabled>← Anterior</button>
-        <button type="button" class="pager-btn" data-dir="1">Siguiente →</button>
-      </div>
-
-      <div class="doc-note">
+      <div class="doc-summary">
         <div><strong>Base técnica:</strong> Procesamiento sobre texto liviano y archivo propio del medio.</div>
         <div><strong>Alcance:</strong> Cuatro ejemplos modulares aplicables por área.</div>
       </div>
 
-      <div class="pdf-bar">
-        <div class="pdf-bar-row">
-          <div class="pdf-info">
-            <strong>Ejemplos Operativos en PDF</strong>
-            1 página · Formato A4 horizontal listo para imprimir o reenviar
-          </div>
-          <div class="pdf-actions">
-            <a class="btn btn-primary" href="Ejemplos-Operativos-IA-Diario-Alfil.pdf" download>Descargar PDF</a>
-            <a class="btn btn-secondary" href="Ejemplos-Operativos-IA-Diario-Alfil.pdf" target="_blank" rel="noopener">Abrir PDF</a>
-          </div>
-        </div>
-        <details class="preview-toggle">
-          <summary>Ver vista previa de la hoja original ▾</summary>
-          <img src="ejemplos.jpg" width="1800" height="1272" loading="lazy" alt="Vista previa de los ejemplos operativos: cuatro aplicaciones de IA por área">
-        </details>
-      </div>
-
-      <div class="switch-doc">
-        <button type="button" class="btn btn-secondary" data-jump-tab="tab-doc1">← Volver al Documento 1: Informe Ejecutivo</button>
-      </div>
+      <button type="button" class="next-doc-btn" data-open-view="doc1">← Ver Documento 1: Posibilidades nicho</button>
     </section>
 
     <footer>
@@ -1015,119 +865,97 @@
     (function () {
       var root = document.documentElement;
 
-      // Tamaño de letra (A, A+, A++)
-      var sizeBtns = document.querySelectorAll('[data-set-size]');
-      function setSize(size) {
-        root.setAttribute('data-size', size);
-        sizeBtns.forEach(function (b) {
-          b.setAttribute('aria-pressed', b.getAttribute('data-set-size') === size ? 'true' : 'false');
-        });
-        try { localStorage.setItem('alfil_size', size); } catch (e) {}
+      // Letra grande (un solo toque A+)
+      var sizeBtn = document.getElementById('sizeBtn');
+      function setLarge(isLarge) {
+        root.setAttribute('data-large', isLarge ? 'true' : 'false');
+        sizeBtn.setAttribute('aria-pressed', isLarge ? 'true' : 'false');
+        sizeBtn.textContent = isLarge ? 'A−' : 'A+';
+        try { localStorage.setItem('alfil_large', isLarge ? '1' : '0'); } catch (e) {}
       }
-      sizeBtns.forEach(function (b) {
-        b.addEventListener('click', function () { setSize(b.getAttribute('data-set-size')); });
+      sizeBtn.addEventListener('click', function () {
+        setLarge(root.getAttribute('data-large') !== 'true');
       });
-      try {
-        var savedSize = localStorage.getItem('alfil_size');
-        if (savedSize) setSize(savedSize);
-      } catch (e) {}
+      try { if (localStorage.getItem('alfil_large') === '1') setLarge(true); } catch (e) {}
 
-      // Tema claro / oscuro
+      // Modo claro / oscuro (siempre arranca en claro por defecto)
       var themeBtn = document.getElementById('themeBtn');
-      var themeLabel = document.getElementById('themeLabel');
       function setTheme(theme) {
         root.setAttribute('data-theme', theme);
-        var isDark = theme === 'dark';
-        themeBtn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-        themeLabel.textContent = isDark ? 'Claro' : 'Oscuro';
+        var dark = theme === 'dark';
+        themeBtn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+        themeBtn.textContent = dark ? 'Claro' : 'Oscuro';
         try { localStorage.setItem('alfil_theme', theme); } catch (e) {}
       }
       themeBtn.addEventListener('click', function () {
         setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
       });
       try {
-        var savedTheme = localStorage.getItem('alfil_theme');
-        if (savedTheme === 'dark' || savedTheme === 'light') setTheme(savedTheme);
+        var st = localStorage.getItem('alfil_theme');
+        if (st === 'dark' || st === 'light') setTheme(st);
       } catch (e) {}
 
-      // Pestañas de documentos (Doc 1 / Doc 2)
-      var tabs = document.querySelectorAll('.doc-tab');
-      function selectTab(tabId, shouldScroll) {
-        tabs.forEach(function (t) {
-          var active = t.id === tabId;
-          t.setAttribute('aria-selected', active ? 'true' : 'false');
-          var panel = document.getElementById(t.getAttribute('aria-controls'));
-          if (panel) panel.hidden = !active;
+      // Navegación entre pantallas: Inicio / Doc 1 / Doc 2
+      var views = {
+        home: document.getElementById('view-home'),
+        doc1: document.getElementById('view-doc1'),
+        doc2: document.getElementById('view-doc2')
+      };
+
+      function openView(name, push) {
+        if (!views[name]) name = 'home';
+        Object.keys(views).forEach(function (k) {
+          views[k].hidden = (k !== name);
         });
-        if (shouldScroll) {
-          var tabsEl = document.querySelector('.doc-tabs');
-          if (tabsEl) tabsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        if (push) {
+          var target = name === 'home' ? window.location.pathname : '#' + name;
+          history.pushState({ view: name }, '', target);
         }
       }
-      tabs.forEach(function (t) {
-        t.addEventListener('click', function () { selectTab(t.id, false); });
-      });
-      document.querySelectorAll('[data-jump-tab]').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          selectTab(btn.getAttribute('data-jump-tab'), true);
+
+      document.querySelectorAll('[data-open-view]').forEach(function (el) {
+        el.addEventListener('click', function () {
+          openView(el.getAttribute('data-open-view'), true);
         });
       });
 
-      // Navegación interactiva por ítems en cada documento
-      function initDocNav(docKey) {
-        var nav = document.querySelector('[data-nav="' + docKey + '"]');
-        var cardsWrap = document.querySelector('[data-cards="' + docKey + '"]');
-        var pager = document.querySelector('[data-pager="' + docKey + '"]');
-        var pills = nav.querySelectorAll('.pill');
-        var cards = cardsWrap.querySelectorAll('.card');
-        var prevBtn = pager.querySelector('[data-dir="-1"]');
-        var nextBtn = pager.querySelector('[data-dir="1"]');
-        var current = '0';
+      document.getElementById('brandHome').addEventListener('click', function () {
+        openView('home', true);
+      });
 
-        function render(target) {
-          current = String(target);
-          pills.forEach(function (p) {
-            p.setAttribute('aria-pressed', p.getAttribute('data-target') === current ? 'true' : 'false');
+      window.addEventListener('popstate', function () {
+        var h = window.location.hash.replace('#', '');
+        openView(h === 'doc1' || h === 'doc2' ? h : 'home', false);
+      });
+
+      var h0 = window.location.hash.replace('#', '');
+      if (h0 === 'doc1' || h0 === 'doc2') openView(h0, false);
+
+      // Acordeón inteligente: toca uno, se abre suave y cierra los demás para cero saturación
+      document.querySelectorAll('[data-accordion]').forEach(function (acc) {
+        var items = acc.querySelectorAll('.acc-item');
+        items.forEach(function (item) {
+          var trigger = item.querySelector('.acc-trigger');
+          var body = item.querySelector('.acc-body');
+          trigger.addEventListener('click', function () {
+            var isOpen = item.classList.contains('open');
+            items.forEach(function (other) {
+              other.classList.remove('open');
+              other.querySelector('.acc-trigger').setAttribute('aria-expanded', 'false');
+              other.querySelector('.acc-body').hidden = true;
+            });
+            if (!isOpen) {
+              item.classList.add('open');
+              trigger.setAttribute('aria-expanded', 'true');
+              body.hidden = false;
+              setTimeout(function () {
+                item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+              }, 40);
+            }
           });
-          if (current === 'all') {
-            cards.forEach(function (c) { c.hidden = false; });
-            pager.hidden = true;
-          } else {
-            var idx = parseInt(current, 10);
-            cards.forEach(function (c, i) { c.hidden = i !== idx; });
-            pager.hidden = false;
-            prevBtn.disabled = idx <= 0;
-            nextBtn.disabled = idx >= cards.length - 1;
-          }
-        }
-
-        pills.forEach(function (p) {
-          p.addEventListener('click', function () {
-            render(p.getAttribute('data-target'));
-          });
         });
-
-        prevBtn.addEventListener('click', function () {
-          var idx = parseInt(current, 10);
-          if (idx > 0) {
-            render(idx - 1);
-            nav.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          }
-        });
-
-        nextBtn.addEventListener('click', function () {
-          var idx = parseInt(current, 10);
-          if (idx < cards.length - 1) {
-            render(idx + 1);
-            nav.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          }
-        });
-
-        render('0');
-      }
-
-      initDocNav('doc1');
-      initDocNav('doc2');
+      });
     })();
   </script>
 </body>
